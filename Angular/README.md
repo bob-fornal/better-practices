@@ -4,7 +4,7 @@
 
 1. [Organization and Configuration](#organization-and-configuration)
 1. [API Services](#api-services)
-1. [JWT Token Services](#jwt-token-services)
+1. [Token Services](#token-services)
 3. [Components](#components)
 
 ## Organzation and Configuration
@@ -323,7 +323,7 @@ export class CategoriesService {
 
 **[Back to top](#table-of-contents)**
 
-## JWT Token Services
+## Token Services
 
 ### Have a JWT Token Service
 ###### [Better Practice [NG012](#best-practice-ng012)]
