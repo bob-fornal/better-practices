@@ -7,7 +7,7 @@
 ## Api Services
 
 ### Use an Abstraction
-###### [Better Practice [BP001](#best-practice-angular001)]
+###### [Better Practice [NG001](#best-practice-ng001)]
 
   - Use an abstraction to allow for cleaner base patterns.
 
