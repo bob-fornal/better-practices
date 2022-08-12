@@ -195,7 +195,7 @@ export class CategoriesService {
 ## Components
 
 ### Use an Abstraction
-###### [Better Practice [NG005](#best-practice-ng005)]
+###### [Better Practice [NG006](#best-practice-ng006)]
 
   - Use an abstraction to allow for cleaner base patterns.
 
