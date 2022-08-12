@@ -7,8 +7,17 @@
 
 ## Api Services
 
-### Use an Abstraction
+### Keep Services at the Component Level
 ###### [Better Practice [NG001](#best-practice-ng001)]
+
+  - This practice is recommended at the Enterprise Level.
+
+  *Why?* This allows multiple developers to be working within a repository without regular merge conflicts.
+  *Why?* This simplifies locating code.
+  *Why?* This reduces clutter in the `services` folder.
+
+### Use an Abstraction
+###### [Better Practice [NG002](#best-practice-ng002)]
 
   - Use an abstraction to allow for cleaner base patterns.
   - Additionally, this provides a clean method for using offline data easily.
@@ -77,7 +86,7 @@ export class CategoriesService extends ApiAbstractionService {
 ```
 
 ### Separate Call from Data Management
-###### [Better Practice [NG002](#best-practice-ng002)]
+###### [Better Practice [NG003](#best-practice-ng003)]
 
   - This separation of concerns allows for a much cleaner implementation.
   - Testing is simplified.
@@ -128,7 +137,7 @@ export class AddSkillsComponent implements OnInit {
 ```
 
 ### Use Try/Catch within API Call Request Functions
-###### [Better Practice [NG003](#best-practice-ng003)]
+###### [Better Practice [NG004](#best-practice-ng004)]
 
   - This provides proper error handling.
 
@@ -149,7 +158,7 @@ getCategories = async (): Promise<void> => {
 ```
 
 ### Maniplate Incoming Data within API Services
-###### [Better Practice [NG004](#best-practice-ng004)]
+###### [Better Practice [NG005](#best-practice-ng005)]
 
   - Data Manipulation should be in the service where the data is requested.
 
