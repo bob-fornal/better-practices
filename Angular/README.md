@@ -56,7 +56,6 @@ import { SkillsService } from '@core/services/skills.service';
 import { Skillset } from '@core/interfaces/skillset';
 ```
 
-
 ### Setup Named Imports
 ###### [Better Practice [NG003](#best-practice-ng003)]
 
@@ -134,6 +133,19 @@ In the `tsconfig.json` file add ...
   *Why?* This allows multiple developers to be working within a repository without regular merge conflicts.
   *Why?* This simplifies locating code.
   *Why?* This reduces clutter in the `services` folder.
+  
+```
+src
+ |- app
+ |   |- pages
+ |   |   |- categories
+ |   |   |   |- categories-api.spec.ts
+ |   |   |   |- categories-api.ts
+ |   |   |   |- categories.component.html
+ |   |   |   |- categories.component.scss
+ |   |   |   |- categories.component.spec.ts
+ |   |   |   |- categories.component.ts
+```
 
 ### Use an Abstraction
 ###### [Better Practice [NG007](#best-practice-ng007)]
