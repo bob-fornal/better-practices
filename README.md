@@ -9,6 +9,10 @@
 
 This guide is heavily influenced by John Papa's amazing respositories for AngularJS and Angular ([HERE](https://github.com/johnpapa/angular-styleguide)).
 
+## Why "Better Practices"
+
+I've avoided best practices in the title here on the assumption that these will evolve and change over time. There is no "best practices" that should always be used.
+
 ## Purpose
 
 *Opinionated better practices guide for teams by [@rfornal](https://twitter.com/rfornal)*.
