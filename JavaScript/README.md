@@ -11,7 +11,8 @@
 
   - Use semicolons when an assignment occurs.
 
-  *Why?* There are strict Automatic Semicolon Insertion rules that behave as expected MOST of the time. Adding them in is not complicated and provide a security that unexpected side-effects will not occur.
+  *Why?* There are strict Automatic Semicolon Insertion (ASI) rules that behave as expected MOST of the time. Adding them in is not complicated and provide a security that unexpected side-effects will not occur.
   
-  **[Back to top](#table-of-contents)**
+There is a great article [HERE](https://flaviocopes.com/javascript-automatic-semicolon-insertion/) about ASI and the side effects.
   
+**[Back to top](#table-of-contents)**
