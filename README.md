@@ -2,7 +2,7 @@
 
 ## Categories
 
-1. [Angular](https://github.com/bob-fornal/better-practices/Angular/README.md)
+1. [Angular](/Angular/README.md)
 
 ## Influence
 
