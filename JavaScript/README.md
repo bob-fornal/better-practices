@@ -7,7 +7,7 @@
 ## Semicolons
 
 ### Use Semicolons
-###### [Better Practice [BP002](#best-practice-javascript002)]
+###### [Better Practice [JS001](#best-practice-javascript002)]
 
   - Use semicolons when an assignment occurs.
 
