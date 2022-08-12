@@ -7,7 +7,7 @@
 
 ## Influence
 
-This guide is heavily influenced by John Papa's amazing respositories for AngularJS and Angular ([HERE]()https://github.com/johnpapa/angular-styleguide).
+This guide is heavily influenced by John Papa's amazing respositories for AngularJS and Angular ([HERE](https://github.com/johnpapa/angular-styleguide)).
 
 ## Purpose
 
