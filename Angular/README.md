@@ -180,6 +180,9 @@ export class CategoriesService {
 }
 ```
 
+**[Back to top](#table-of-contents)**
+
+
 ## Components
 
 ### Use an Abstraction
@@ -227,7 +230,7 @@ export class CategoriesComponent extends DetailPageAbstraction {
     super(activatedRoute);
   }
 }
-
+```
   
 **[Back to top](#table-of-contents)**
   
