@@ -2,10 +2,11 @@
 
 ## Table of Contents
 
-1. [API Service](#api-service-abstractions)
-1. [Component Abstractions](#component-abstractions)
+1. [API Service Abstractions](#api-service-abstractions)
+1. [API Service Observables](#api-service-observables)
+3. [Component Abstractions](#component-abstractions)
 
-## Api ServiceAbstractions
+## Api Service Abstractions
 
 ### Use an Abstraction
 ###### [Better Practice [NG001](#best-practice-ng001)]
@@ -76,10 +77,116 @@ export class CategoriesService extends ApiAbstractionService {
 
 ```
 
+## Api Service Observables
+
+### Separate Call from Data Management
+###### [Better Practice [NG002](#best-practice-ng002)]
+
+  - This separation of concerns allows for a much cleaner implementation.
+  - Testing is simplified.
+
+  *Why?* This separates when we request the data from when that data is utilized efficiently.
+  
+```typescript
+export class CategoriesService {
+  categories: BehaviorSubject<Array<Category>> = new BehaviorSubject<Array<Category>>([]);
+  
+  getCategories = async (): Promise<void> => {
+    const key: string = 'categories';
+    const url: string = this.getApiAddress(key);
+
+    try {
+      const categories: Array<Category> = await this.http.get<Array<Category>>(url).toPromise();
+      this.categories.next(categories);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+```
+
+Usage of this pattern is as follows ...
+
+```typescript
+@Component({
+  template: ''
+})
+export class AddSkillsComponent implements OnInit {
+  categories: Array<Category> = [];
+
+  constructor(
+    public categoriesService: CategoriesService
+  ) {
+    this.categoriesService.categories.subscribe(this.handleCategoryData.bind(this));
+  }
+
+  ngOnInit() {
+    this.skillsService.getCategories();
+  };
+
+  handleCategoryData = (data: Array<Category>): void => {
+    this.categories = [ ...data ];
+  };
+}
+```
+
+### Use Try/Catch within API Call Request Functions
+###### [Better Practice [NG003](#best-practice-ng003)]
+
+  - This provides proper error handling.
+
+  *Why?* This places error handling at the proper level.
+
+```typescript
+getCategories = async (): Promise<void> => {
+  const key: string = 'categories';
+  const url: string = this.getApiAddress(key);
+
+  try {
+    const categories: Array<Category> = await this.http.get<Array<Category>>(url).toPromise();
+    this.categories.next(categories);
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
+### Maniplate Incoming Data within API Services
+###### [Better Practice [NG004](#best-practice-ng004)]
+
+  - Data Manipulation should be in the service where the data is requested.
+
+  *Why?* All relevant data management is in one place.
+
+```typescript
+export class CategoriesService {
+  categories: BehaviorSubject<Array<Category>> = new BehaviorSubject<Array<Category>>([]);
+  
+  getCategories = async (): Promise<void> => {
+    const key: string = 'categories';
+    const url: string = this.getApiAddress(key);
+
+    try {
+      const categories: Array<Category> = await this.http.get<Array<Category>>(url).toPromise();
+      const adjusted: Array<Category> = this.adjustCategories(categories);
+      this.categories.next(adjusted);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  adjustCategories = (categories: Array<Category>): Array<Category> => {
+    return categories.map((category: Category): Category => {
+      // DO SOMETHING HERE
+    });
+  };
+}
+```
+
 ## Component Abstractions
 
 ### Use an Abstraction
-###### [Better Practice [NG002](#best-practice-ng002)]
+###### [Better Practice [NG005](#best-practice-ng005)]
 
   - Use an abstraction to allow for cleaner base patterns.
 
