@@ -3,6 +3,7 @@
 ## Categories
 
 1. [Angular](/Angular/README.md)
+1. [JavaScript](/JavaScript/README.md)
 
 ## Influence
 
