@@ -11,7 +11,7 @@
 
   - Use semicolons when an assignment occurs.
 
-  *Why?*
+  *Why?* There are strict Automatic Semicolon Insertion rules that behave as expected MOST of the time. Adding them in is not complicated and provide a security that unexpected side-effects will not occur.
   
   **[Back to top](#table-of-contents)**
   
