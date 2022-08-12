@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [API Service](https://github.com/bob-fornal/better-practices/Angular/README.md#api-services)
+1. [API Service](#api-services)
 
 ## Api Services
 
