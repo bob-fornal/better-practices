@@ -2,9 +2,10 @@
 
 ## Table of Contents
 
-1. [API Service](#api-services)
+1. [API Service](#api-service-abstractions)
+1. [Component Abstractions](#component-abstractions)
 
-## Api Services
+## Api ServiceAbstractions
 
 ### Use an Abstraction
 ###### [Better Practice [NG001](#best-practice-ng001)]
@@ -18,7 +19,6 @@
 import hostnames from '@core/constants/hostnames.json';
 
 export abstract class ApiAbstractionService {
-
   hostnames: any = hostnames;
 
   getHostname = (_window: any): string => _window.location.hostname;
@@ -35,7 +35,6 @@ export abstract class ApiAbstractionService {
     }
     return address;
   };
-  
 }
 ```
 
@@ -59,7 +58,7 @@ export abstract class ApiAbstractionService {
 
 Now, whenever a key is not in `online`, the code will automatically use the offline data.
 
-This abstaction can be implemented like this ...
+This abstraction can be implemented like this ...
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -76,6 +75,54 @@ export class CategoriesService extends ApiAbstractionService {
 }
 
 ```
+
+## Component Abstractions
+
+### Use an Abstraction
+###### [Better Practice [NG002](#best-practice-ng002)]
+
+  - Use an abstraction to allow for cleaner base patterns.
+
+  *Why?* This practice provides a strong level of consistency across components, in particular when doing things like getting data from the URL.
+  
+```typescript
+import { ActivatedRoute } from "@angular/router";
+
+export abstract class DetailPageAbstraction {
+  eventId: string = '';
+  eventTaskId: string = '';
+  
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.initialize();
+  }
+  
+  initialize = (): void => {
+    this.eventId = this.activatedRoute.snapshot.paramMap.get('eventId');
+    this.eventTaskId = this.activatedRoute.snapshot.paramMap.get('eventTaskId');
+  };
+}
+```
+
+This abstraction can be implemented like this ...
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+
+import { DetailPageAbstraction } from '@shared/detail-page-abstraction/detail-page.abstraction';
+
+@Component({
+  template: ''
+})
+export class CategoriesComponent extends DetailPageAbstraction {
+  constructor(
+    activatedRoute: ActivatedRoute
+  ) {
+    super(activatedRoute);
+  }
+}
 
   
 **[Back to top](#table-of-contents)**
