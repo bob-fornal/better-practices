@@ -34,8 +34,31 @@
 1. `pages` are page-level components.
 1. `shared` are components or abstractions that are reusable.
 
-### Setup Named Imports
+### Use a Consistent Pattern for Imports
 ###### [Better Practice [NG002](#best-practice-ng002)]
+
+  - This practice is recommended at the Enterprise Level.
+
+  *Why?* This pattern provide a clear improvement in readability.
+
+Organize imports at the top of files. Group them, as follows with a blank line between each group. The groups should be individually sorted alphabetically.
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { first, map } from 'rxjs/operators';
+
+import { Category } from '@core/interfaces/category';
+import { Skill } from '@core/interfaces/skill';
+import { SkillLevel } from '@core/interfaces/skill-level';
+
+import { ManageDataService } from '@core/services/manage-data.service';
+import { SkillsService } from '@core/services/skills.service';
+import { Skillset } from '@core/interfaces/skillset';
+```
+
+
+### Setup Named Imports
+###### [Better Practice [NG003](#best-practice-ng003)]
 
   - This practice is recommended at the Enterprise Level.
   - This practice provides much cleaner imports.
@@ -60,7 +83,7 @@ In the `tsconfig.json` file add ...
 ```
 
 ### Use JSON for Constants
-###### [Better Practice [NG003](#best-practice-ng003)]
+###### [Better Practice [NG004](#best-practice-ng004)]
 
   - This practice is recommended at the Enterprise Level.
   - This practice places constant information in a consistent location.
@@ -80,7 +103,7 @@ In the `tsconfig.json` file add ...
 ```
 
 ### Use Synthetic Default Imports
-###### [Better Practice [NG004](#best-practice-ng004)]
+###### [Better Practice [NG005](#best-practice-ng005)]
 
   - This practice is recommended at the Enterprise Level.
   - This practice provides a cleaner import.
@@ -104,7 +127,7 @@ In the `tsconfig.json` file add ...
 ## API Services
 
 ### Keep Services at the Component Level
-###### [Better Practice [NG005](#best-practice-ng005)]
+###### [Better Practice [NG006](#best-practice-ng006)]
 
   - This practice is recommended at the Enterprise Level.
 
@@ -113,7 +136,7 @@ In the `tsconfig.json` file add ...
   *Why?* This reduces clutter in the `services` folder.
 
 ### Use an Abstraction
-###### [Better Practice [NG006](#best-practice-ng006)]
+###### [Better Practice [NG007](#best-practice-ng007)]
 
   - Use an abstraction to allow for cleaner base patterns.
   - Additionally, this provides a clean method for using offline data easily.
@@ -182,7 +205,7 @@ export class CategoriesService extends ApiAbstractionService {
 ```
 
 ### Separate Call from Data Management
-###### [Better Practice [NG007](#best-practice-ng007)]
+###### [Better Practice [NG008](#best-practice-ng008)]
 
   - This separation of concerns allows for a much cleaner implementation.
   - Testing is simplified.
@@ -233,7 +256,7 @@ export class AddSkillsComponent implements OnInit {
 ```
 
 ### Use Try/Catch within API Call Request Functions
-###### [Better Practice [NG008](#best-practice-ng008)]
+###### [Better Practice [NG009](#best-practice-ng009)]
 
   - This provides proper error handling.
 
@@ -254,7 +277,7 @@ getCategories = async (): Promise<void> => {
 ```
 
 ### Maniplate Incoming Data within API Services
-###### [Better Practice [NG009](#best-practice-ng009)]
+###### [Better Practice [NG010](#best-practice-ng010)]
 
   - Data Manipulation should be in the service where the data is requested.
 
@@ -291,7 +314,7 @@ export class CategoriesService {
 ## Components
 
 ### Use an Abstraction
-###### [Better Practice [NG010](#best-practice-ng010)]
+###### [Better Practice [NG011](#best-practice-ng011)]
 
   - Use an abstraction to allow for cleaner base patterns.
 
