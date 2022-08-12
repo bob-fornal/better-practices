@@ -4,7 +4,8 @@
 
 1. [Organization and Configuration](#organization-and-configuration)
 1. [API Services](#api-services)
-1. [Components](#components)
+1. [JWT Token Services](#jwt-token-services)
+3. [Components](#components)
 
 ## Organzation and Configuration
 
@@ -322,6 +323,135 @@ export class CategoriesService {
 
 **[Back to top](#table-of-contents)**
 
+## JWT Token Services
+
+### Have a JWT Token Service
+###### [Better Practice [NG012](#best-practice-ng012)]
+
+  - This is a service that can retrieve the token.
+  - Recursion check that the token has been retrieved for components and services making API call.s
+
+  *Why?* Isolate this functionality rather than embedding it into other services.
+  *Why?* The recursive function applies minimal wait time for the components needing to make calls.
+
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import authnames from '@core/constants/auth.json';
+
+import { HostnameService } from './hostname.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class JwtTokenService {
+
+  hasToken: boolean = false;
+  token: string = '';
+
+  timeout: number = 100;
+
+  hostname: string = '';
+
+  constructor(
+    public hostnameService: HostnameService,
+    public http: HttpClient
+  ) {
+    this.hasToken = false;
+    this.hostname = this.hostnameService.get(window);
+  }
+
+  hasRetrievedToken = (): boolean => this.hasToken;
+
+  retrieveToken = (tokenId: string, accessToken: string): void => {
+    const jwtUrl: string = authnames[this.hostname].oauthUrl;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${ tokenId }, Bearer ${ accessToken }`
+      })
+    };
+
+    this.http.post(jwtUrl, {}, httpOptions).subscribe((data: any) => {
+      this.setJwtToken(data.access_token);
+    });
+  };
+
+  setJwtToken = (token: string): void => {
+    this.token = token;
+    this.hasToken = true;
+  };
+
+  getJwtToken = (): string => this.token;
+
+  pollForJwtToken = (fn: () => any) => {
+    this.poll(fn);
+  };
+
+  poll = (fn: () => any) => {
+    const hasRetrievedToken: boolean = this.hasRetrievedToken();
+    if (hasRetrievedToken === true) {
+      fn();
+    } else {
+      setTimeout(this.poll.bind(this, fn), this.timeout);
+    }
+  };
+  
+}
+```
+
+### Use an Interceptor
+###### [Better Practice [NG013](#best-practice-ng013)]
+
+  - Use an interceptor to keep the API calls in other services clean.
+
+  *Why?* This practice provides a clarity in the code.
+  
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable, from } from 'rxjs';
+
+import { JwtTokenService } from './jwt-token.service';
+import { LogoutService } from './logout.service';
+
+@Injectable()
+export class AuthInterceptorService implements HttpInterceptor {
+  allowedDomains: Array<string> = [ 'api/' ];
+  jwtTokenOrigin: Array<string> = [ '/jwtforoktab2e' ];
+
+  constructor(
+    public jwtTokenService: JwtTokenService
+  ) { }
+
+  intercept = (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {
+    return from(this.handleAccess(request, next));
+  };
+
+  isAllowedDomain = (url: string): boolean => this.allowedDomains.some(partial => url.includes(partial));
+  isNotJwtOrigin = (url: string): boolean => !this.jwtTokenOrigin.some(partial => url.includes(partial));
+
+  needsJwtAdded = (url: string): boolean => this.isAllowedDomain(url) && this.isNotJwtOrigin(url);
+
+  getJwtToken = (): string => (this.jwtTokenService.hasRetrievedToken()) ? this.jwtTokenService.getJwtToken() : '';
+
+  handleAccess = async (request: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> => {
+    if (this.needsJwtAdded(request.urlWithParams)) {
+      let jwtToken: string = this.getJwtToken();
+  
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${ jwtToken }`
+        }
+      });
+    }
+    return next.handle(request).toPromise();
+  };
+}
+```
+
+**[Back to top](#table-of-contents)**
 
 ## Components
 
