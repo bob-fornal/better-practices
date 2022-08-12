@@ -2,11 +2,10 @@
 
 ## Table of Contents
 
-1. [API Service Abstractions](#api-service-abstractions)
-1. [API Service Observables](#api-service-observables)
-3. [Component Abstractions](#component-abstractions)
+1. [API Services](#api-services)
+1. [Components](#components)
 
-## Api Service Abstractions
+## Api Services
 
 ### Use an Abstraction
 ###### [Better Practice [NG001](#best-practice-ng001)]
@@ -76,8 +75,6 @@ export class CategoriesService extends ApiAbstractionService {
 }
 
 ```
-
-## Api Service Observables
 
 ### Separate Call from Data Management
 ###### [Better Practice [NG002](#best-practice-ng002)]
@@ -183,7 +180,7 @@ export class CategoriesService {
 }
 ```
 
-## Component Abstractions
+## Components
 
 ### Use an Abstraction
 ###### [Better Practice [NG005](#best-practice-ng005)]
