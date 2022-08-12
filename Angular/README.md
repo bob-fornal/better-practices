@@ -10,6 +10,7 @@
 ###### [Better Practice [NG001](#best-practice-ng001)]
 
   - Use an abstraction to allow for cleaner base patterns.
+  - Additionally, this provides a clean method for using offline data easily.
 
   *Why?* This practice provides a strong level of consistency across API Services.
   
