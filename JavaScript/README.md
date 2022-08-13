@@ -4,7 +4,8 @@
 
 1. [Semicolons](#semicolons)
 1. [For-Loops](#for-loops)
-1. [If-Conditions](#if-conditions)
+1. [Comparison](#comparison)
+1. [Shorthand Notation](@shorthand-notation)
 
 ## Semicolons
 
@@ -49,10 +50,17 @@ for (let i = 0, len = categories.length; i < len; i++) {
 
 **[Back to top](#table-of-contents)**
 
-## If-Conditions
+## Comparison
+
+### Use `===` instead of `==`
+###### [Better Practice [JS004](#best-practice-js004)]
+
+  - Using `===` and `!==` allows for strict equality when comparing values.
+
+  *Why?* When working with `==` and `!=` there can be side-effects related to type coersion (unexpected results).
 
 ### Be Explicit when Comparing
-###### [Better Practice [JS003(#best-practice-js003]
+###### [Better Practice [JS003](#best-practice-js003)]
 
   - Using `!` or `!!` can have unusual side-effects.
   - Makes the logic more explicit and easier to reason about.
@@ -78,6 +86,38 @@ function handleData(isReady) {
     // do something
   }
 }
+```
+
+**[Back to top](#table-of-contents)**
+
+## Shorthand Notation
+
+### Use Specific Shorthand for If-Comparisons
+###### [Better Practice [JS005](#best-practice-js005)]
+
+  - Only omit the brackets for one-line if-comparisons.
+
+  *Why?* Less confusion in the code, making it more readable.
+
+This is a **bad practicce**. While it will work, it could lead to unexpected code in the future.
+
+```javascript
+if (isReady === true)
+  isReady = false;
+```
+
+Someone could try to extend the function and unintentionally cause issues.
+
+```javascript
+if (isReady === true)
+  isReady = false;
+  functionCall();
+```
+
+Instead, stick to something clear; a one-line if-comparison.
+
+```javascript
+if (isReady === true) isReady = false;
 ```
 
 **[Back to top](#table-of-contents)**
