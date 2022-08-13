@@ -4,6 +4,7 @@
 
 1. [Semicolons](#semicolons)
 1. [For-Loops](#for-loops)
+1. [If-Conditions](#if-conditions)
 
 ## Semicolons
 
@@ -45,3 +46,38 @@ for (let i = 0, len = categories.length; i < len; i++) {
   // do something
 }
 ```
+
+**[Back to top](#table-of-contents)**
+
+## If-Conditions
+
+### Be Explicit when Comparing
+###### [Better Practice [JS003(#best-practice-js003]
+
+  - Using `!` or `!!` can have unusual side-effects.
+  - Makes the logic more explicit and easier to reason about.
+
+  *Why?* Make the code less prone to side effects.
+  *Why?* Make the code more readable.
+  
+Side-effects can occur if this function is passed a string which evaluates `!!isReady` to `true`.
+
+```javascript
+function handleData(isReady) {
+  if (!!isReady) {
+    // do something
+  }
+}
+```
+
+Explicitly define the condition to avoid side-effects. The triple-equals (`===`) also helps to ensure it's a binary comparison.
+
+```javascript
+function handleData(isReady) {
+  if (isReady === true) {
+    // do something
+  }
+}
+```
+
+**[Back to top](#table-of-contents)**
