@@ -27,7 +27,7 @@ for (let i = 0, len = categories.length; i < len; i++) {
 
 ## Naming Variables and Functions
 
-### Use CamelCase for Names
+### Use Camel Case for Names
 ###### [Better Practice [NC002](#best-practice-nc002)]
 
   - Using camel-case is an accepted practice.
@@ -80,7 +80,7 @@ function getCategory(data) {
 ###### [Better Practice [NC006](#best-practice-nc006)]
 
   - Use descriptive titles that explain the capabilities of the class.
-  - Use Pascal case for class names.
+  - Use pascal case for class names.
 
   *Why?* This pattern provides a clean method of differentiating between the class and its implementation.
   
