@@ -37,6 +37,7 @@ for (let i = 0, len = categories.length; i < len; i++) {
 ### Self explanatory
 ###### [Better Practice [NC003](#best-practice-nc003)]
 
+  - Good variable and function names should be easy to understand and tell what is going on — not more and not less.
   - The names of variables and functions should be self-explanatory and describe the stored value..
 
   *Why?* These names should follow the narrative of the code.
