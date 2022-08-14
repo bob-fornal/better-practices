@@ -4,6 +4,7 @@
 
 1. [Angular](/Angular/README.md)
 1. [JavaScript](/JavaScript/README.md)
+1. [Naming Conventions](/Naming-Conventions/README.md)
 
 ## Influence
 
