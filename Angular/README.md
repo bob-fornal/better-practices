@@ -4,8 +4,9 @@
 
 1. [Organization and Configuration](#organization-and-configuration)
 1. [API Services](#api-services)
+1. [Filtering Services](#filtering-services)
 1. [Token Services](#token-services)
-3. [Components](#components)
+1. [Components](#components)
 
 ## Organzation and Configuration
 
@@ -317,6 +318,55 @@ export class CategoriesService {
     return categories.map((category: Category): Category => {
       // DO SOMETHING HERE
     });
+  };
+}
+```
+
+**[Back to top](#table-of-contents)**
+
+## Filtering Services
+
+### Utilize Observables
+###### [Better Practice [NG014](#best-practice-ng014)]
+
+  - With Observables, the filters and data can be watched for changes that can then be passed to a single function for processing.
+
+  *Why?* This removes the complexity of watching data for changes.
+
+```typescript
+import { BehaviorSubject, combineLatest } from "rxjs";
+
+export class FilterContent {
+  categoryFilter$ = new BehaviorSubject('');
+  countryFilter$ = new BehaviorSubject('');
+
+  products$ = new BehaviorSubject([
+    { title: 'First', category: 'Square', country: 'USA' },
+    ...
+  ]);
+  filtered = [];
+
+  constructor() {
+    this.init();
+  }
+
+  init = () => {
+    combineLatest([ this.products$, this.categoryFilter$, this.countryFilter$ ])
+      .subscribe(this.handleFilter.bind(this));
+  };
+
+  handleFilter = ([ products, selectedCategory, selectedCountry]) => {
+    this.filtered = products.filter((product) => {
+      return product.category.includes(selectedCategory) && product.country.includes(selectedCountry);
+    });
+  };
+
+  onCategoryFilterChange = (category) => {
+    this.categoryFilter$.next(category);
+  };
+
+  onCountryFilterChange = (country) => {
+    this.countryFilter$.next(country);
   };
 }
 ```
