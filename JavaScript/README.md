@@ -5,7 +5,7 @@
 1. [Block Declarations](#block-declarations)
 1. [Comparison](#comparison)
 1. [For-Loops](#for-loops)
-1. [Optional Chaining](#optional-chaining)
+1. [Optional Chaining with Null-ish Coalescing](#optional-chaining-with-null-ish-coalescing)
 1. [Semicolons](#semicolons)
 1. [Shorthand Notation](#shorthand-notation)
 
@@ -110,7 +110,7 @@ for (let i = 0, len = categories.length; i < len; i++) {
 
 **[Back to top](#table-of-contents)**
 
-## Optional Chaining
+## Optional Chaining with Null-ish Coalescing
 
 ### Use to Check Nested Objects
 ###### [Better Practice [JS007](#best-practice-js007)]
@@ -139,10 +139,10 @@ Optional chaining provides a cleaner pattern ...
 const weight = (category?.title?.weight !== undefined) ? category.title.weight : 0;
 ```
 
-If it's OK to have undefined in the variable, this can be simplified ...
+With Null-ish Coalescing, this can be simplified futher, providing a very clean readable set of code ...
 
 ```javascript
-const weight = category.title.weight;
+const weight = category?.title?.weight ?? 0;
 ```
 
 **[Back to top](#table-of-contents)**
