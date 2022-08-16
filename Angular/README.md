@@ -535,8 +535,7 @@ export abstract class DetailPageAbstraction {
 This abstraction can be implemented like this ...
 
 ```typescript
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { Subject, takeUntil } from 'rxjs';
 
 import { DetailPageAbstraction } from '@shared/detail-page-abstraction/detail-page.abstraction';
 
@@ -545,12 +544,42 @@ import { DetailPageAbstraction } from '@shared/detail-page-abstraction/detail-pa
 })
 export class CategoriesComponent extends DetailPageAbstraction {
   constructor(
-    activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {
     super(activatedRoute);
   }
 }
 ```
-  
+
+### Clean Up Observables
+###### [Better Practice [NG015](#best-practice-ng015)]
+
+  - This practice is recommended at the Enterprise Level.
+
+  *Why?* If a subscription is not closed the function callback attached to it will be continuously called, this can cause memory leaks and performance issues.
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+
+@Component({
+  template: ''
+})
+export class CategoriesComponent {
+  private destroy: any = new Subject();
+
+  constructor(
+    private categoryService: CategoryService
+  ) {
+    this.categoryService.data.pipe(
+      takeUntil(this.destroy)
+    ).subscribe(this.handleCategoryData);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+  }
+}
+```
+
 **[Back to top](#table-of-contents)**
-  
