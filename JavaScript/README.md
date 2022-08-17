@@ -127,7 +127,7 @@ const category = {
 };
 ```
 
-Referencing `category.title.weight` returns `TypeError: Cannot read property 'weight` of undefined.` To avoid this error, the following pattern was used.
+Referencing `category.title.weight` returns `TypeError: Cannot read property 'weight' of undefined.` To avoid this error, the following pattern was used.
 
 ```javascript
 const weight = (category && category.title && category.weight) ? category.title.weight : 0;
@@ -139,7 +139,7 @@ Optional chaining provides a cleaner pattern ...
 const weight = (category?.title?.weight !== undefined) ? category.title.weight : 0;
 ```
 
-With Null-ish Coalescing, this can be simplified futher, providing a very clean readable set of code ...
+With null-ish coalescing and optional chaining, this can be simplified futher, providing a very clean readable set of code ...
 
 ```javascript
 const weight = category?.title?.weight ?? 0;
