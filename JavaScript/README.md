@@ -5,6 +5,7 @@
 1. [Block Declarations](#block-declarations)
 1. [Comparison](#comparison)
 1. [For-Loops](#for-loops)
+1. [Functions](#functions)
 1. [Optional Chaining with Null-ish Coalescing](#optional-chaining-with-null-ish-coalescing)
 1. [Semicolons](#semicolons)
 1. [Shorthand Notation](#shorthand-notation)
@@ -106,6 +107,40 @@ const categories = [ '1', '2', ... ];
 for (let i = 0, len = categories.length; i < len; i++) {
   // do something
 }
+```
+
+**[Back to top](#table-of-contents)**
+
+## Functions
+
+### Arrow Function Expression rather than Declaration
+###### [Better Practice [JS008](#best-practice-js008)]
+
+  - Use function expressions rather than function declaration.
+
+  *Why?* Take advantage of the scope improvements that function expressions provide.
+  *Why?* Avoid the hoisting behavior of function declaration.
+
+* In the following code, the function `first` works even though the actual function follows this line in the code.
+* The function `second` logically throws a `ReferenceError`.
+* The function `third` also logicall throws a `ReferenceError` and takes advantage of scope improvements.
+
+```javascript
+first(); // works
+second(); // throws a ReferenceError
+third(); // throws a ReferenceError
+
+function first() {
+  // do something
+}
+
+const second = function() {
+  // do something
+}
+
+const third = () => {
+  // do something
+};
 ```
 
 **[Back to top](#table-of-contents)**
