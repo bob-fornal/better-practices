@@ -3,6 +3,7 @@
 ## Table of Contents
 
 1. [Block Declarations](#block-declarations)
+1. [Classes](#classes)
 1. [Comparison](#comparison)
 1. [For-Loops](#for-loops)
 1. [Functions](#functions)
@@ -38,6 +39,21 @@ if (true) {
 }
 console.log(y); // consoles 10
 ```
+
+**[Back to top](#table-of-contents)**
+
+## Classes
+
+### Use Classes instead of Constructor Functions
+###### [Better Practice [JS009](#best-practice-js009)]
+
+  - `new` is required.
+  - A single, canonical way to emulate classes in JavaScript.
+
+  *Why?* Convenient, self-contained syntax.
+  *Why?* Classes are clearer and are more readable.
+  *Why?* Classes have a built in constructor.
+  *Why?* More familiar when more familiar with class-based languages.
 
 **[Back to top](#table-of-contents)**
 
