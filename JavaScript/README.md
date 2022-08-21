@@ -358,7 +358,7 @@ const conditions = {
 let checkCase = (['a', 'b', 'c'].includes(a)) ? conditions[a] : conditions.default;
 ```
 
-### DO NOT Overuse Ternaries
+### DO NOT Make Ternaries More Complex
 ###### [Better Practice [JS013](#better-practice-js013)]
 
   - Ternaries are not necessary for every comparison.
