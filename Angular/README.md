@@ -11,7 +11,7 @@
 ## Organzation and Configuration
 
 ### Use a Consistent Structure
-###### [Better Practice [NG001](#best-practice-ng001)]
+###### [Better Practice [NG001](#better-practice-ng001)]
 
   - This practice is recommended at the Enterprise Level.
 
@@ -37,7 +37,7 @@
 1. `shared` are components or abstractions that are reusable.
 
 ### Use a Consistent Pattern for Imports
-###### [Better Practice [NG002](#best-practice-ng002)]
+###### [Better Practice [NG002](#better-practice-ng002)]
 
   - This practice is recommended at the Enterprise Level.
 
@@ -59,7 +59,7 @@ import { Skillset } from '@core/interfaces/skillset';
 ```
 
 ### Setup Named Imports
-###### [Better Practice [NG003](#best-practice-ng003)]
+###### [Better Practice [NG003](#better-practice-ng003)]
 
   - This practice is recommended at the Enterprise Level.
   - This practice provides much cleaner imports.
@@ -84,7 +84,7 @@ In the `tsconfig.json` file add ...
 ```
 
 ### Use JSON for Constants
-###### [Better Practice [NG004](#best-practice-ng004)]
+###### [Better Practice [NG004](#better-practice-ng004)]
 
   - This practice is recommended at the Enterprise Level.
   - This practice places constant information in a consistent location.
@@ -104,7 +104,7 @@ In the `tsconfig.json` file add ...
 ```
 
 ### Use Synthetic Default Imports
-###### [Better Practice [NG005](#best-practice-ng005)]
+###### [Better Practice [NG005](#better-practice-ng005)]
 
   - This practice is recommended at the Enterprise Level.
   - This practice provides a cleaner import.
@@ -128,7 +128,7 @@ In the `tsconfig.json` file add ...
 ## API Services
 
 ### Keep Services at the Component Level
-###### [Better Practice [NG006](#best-practice-ng006)]
+###### [Better Practice [NG006](#better-practice-ng006)]
 
   - This practice is recommended at the Enterprise Level.
 
@@ -150,7 +150,7 @@ src
 ```
 
 ### Use an Abstraction
-###### [Better Practice [NG007](#best-practice-ng007)]
+###### [Better Practice [NG007](#better-practice-ng007)]
 
   - Use an abstraction to allow for cleaner base patterns.
   - Additionally, this provides a clean method for using offline data easily.
@@ -219,7 +219,7 @@ export class CategoriesService extends ApiAbstractionService {
 ```
 
 ### Separate Call from Data Management
-###### [Better Practice [NG008](#best-practice-ng008)]
+###### [Better Practice [NG008](#better-practice-ng008)]
 
   - This separation of concerns allows for a much cleaner implementation.
   - Testing is simplified.
@@ -270,7 +270,7 @@ export class AddSkillsComponent implements OnInit {
 ```
 
 ### Use Try/Catch within API Call Request Functions
-###### [Better Practice [NG009](#best-practice-ng009)]
+###### [Better Practice [NG009](#better-practice-ng009)]
 
   - This provides proper error handling.
 
@@ -291,7 +291,7 @@ getCategories = async (): Promise<void> => {
 ```
 
 ### Maniplate Incoming Data within API Services
-###### [Better Practice [NG010](#best-practice-ng010)]
+###### [Better Practice [NG010](#better-practice-ng010)]
 
   - Data Manipulation should be in the service where the data is requested.
 
@@ -327,7 +327,7 @@ export class CategoriesService {
 ## Filtering Services
 
 ### Utilize Observables
-###### [Better Practice [NG014](#best-practice-ng014)]
+###### [Better Practice [NG014](#better-practice-ng014)]
 
   - With Observables, the filters and data can be watched for changes that can then be passed to a single function for processing.
 
@@ -376,7 +376,7 @@ export class FilterContent {
 ## Token Services
 
 ### Have a JWT Token Service
-###### [Better Practice [NG012](#best-practice-ng012)]
+###### [Better Practice [NG012](#better-practice-ng012)]
 
   - This is a service that can retrieve the token.
   - Recursion check that the token has been retrieved for components and services making API call.s
@@ -452,7 +452,7 @@ export class JwtTokenService {
 ```
 
 ### Use an Interceptor
-###### [Better Practice [NG013](#best-practice-ng013)]
+###### [Better Practice [NG013](#better-practice-ng013)]
 
   - Use an interceptor to keep the API calls in other services clean.
 
@@ -506,7 +506,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 ## Components
 
 ### Use an Abstraction
-###### [Better Practice [NG011](#best-practice-ng011)]
+###### [Better Practice [NG011](#better-practice-ng011)]
 
   - Use an abstraction to allow for cleaner base patterns.
 
@@ -552,7 +552,7 @@ export class CategoriesComponent extends DetailPageAbstraction {
 ```
 
 ### Clean Up Observables
-###### [Better Practice [NG015](#best-practice-ng015)]
+###### [Better Practice [NG015](#better-practice-ng015)]
 
   - This practice is recommended at the Enterprise Level.
 
