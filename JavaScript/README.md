@@ -7,14 +7,14 @@
 1. [Comparison](#comparison)
 1. [For-Loops](#for-loops)
 1. [Functions](#functions)
-1. [Optional Chaining with Null-ish Coalescing](#optional-chaining-with-null-ish-coalescing)
+1. [Objects](#objects)
 1. [Semicolons](#semicolons)
 1. [Shorthand Notation](#shorthand-notation)
 
 ## Block Declarations
 
 ### Use `let` and `const`
-###### [Better Practice [JS006](#best-practice-js006)]
+###### [Better Practice [JS006](#better-practice-js006)]
 
   - Use `let` and `const` rather than `var`
 
@@ -45,7 +45,7 @@ console.log(y); // consoles 10
 ## Classes
 
 ### Use Classes instead of Constructor Functions
-###### [Better Practice [JS009](#best-practice-js009)]
+###### [Better Practice [JS009](#better-practice-js009)]
 
   - `new` is required.
   - A single, canonical way to emulate classes in JavaScript.
@@ -60,14 +60,14 @@ console.log(y); // consoles 10
 ## Comparison
 
 ### Use `===` instead of `==`
-###### [Better Practice [JS004](#best-practice-js004)]
+###### [Better Practice [JS004](#better-practice-js004)]
 
   - Using `===` and `!==` allows for strict equality when comparing values.
 
   *Why?* When working with `==` and `!=` there can be side-effects related to type coersion (unexpected results).
 
 ### Be Explicit when Comparing
-###### [Better Practice [JS003](#best-practice-js003)]
+###### [Better Practice [JS003](#better-practice-js003)]
 
   - Using `!` or `!!` can have unusual side-effects.
   - Makes the logic more explicit and easier to reason about.
@@ -100,7 +100,7 @@ function handleData(isReady) {
 ## For-Loops
 
 ### Pre-Calculate Length
-###### [Better Practice [JS002](#best-practice-js002)]
+###### [Better Practice [JS002](#better-practice-js002)]
 
   - Calculate the length outside the iteration of the loop.
 
@@ -130,7 +130,7 @@ for (let i = 0, len = categories.length; i < len; i++) {
 ## Functions
 
 ### Arrow Function Expression rather than Declaration
-###### [Better Practice [JS008](#best-practice-js008)]
+###### [Better Practice [JS008](#better-practice-js008)]
 
   - Use function expressions rather than function declaration.
 
@@ -161,10 +161,46 @@ const third = () => {
 
 **[Back to top](#table-of-contents)**
 
-## Optional Chaining with Null-ish Coalescing
+## Objects
 
-### Use to Check Nested Objects
-###### [Better Practice [JS007](#best-practice-js007)]
+### Use Dot Notation for Fixed Properties
+###### [Better Practice [JS011](#better-practice-js011)]
+
+  - Use dot notation when working with fixed properties.
+
+  *Why?* This is a simple, readable pattern.
+
+```javascript
+const category = {
+  title: {
+    description: 'JavaScript'
+  }
+};
+
+console.log(category.title.description);
+```
+
+### Use Square-Bracket Notation for Dynamic Properties
+###### [Better Practice [JS011](#better-practice-js011)]
+
+  - Use square-bracket notation when working with dynamic properties.
+  - This pattern can be used with data that is fetched from an API.
+
+  *Why?* This is a simple, readable pattern.
+
+```javascript
+const getData = async (url) => {
+  try {
+    const category = await fetch(url);
+    console.log(category['title']['description']);
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
+### Use Optional Chaining with Null-ish Coalescing to Check Nested Objects
+###### [Better Practice [JS007](#better-practice-js007)]
 
   - Use a pattern like `category?.title?.description`
 
@@ -201,7 +237,7 @@ const weight = category?.title?.weight ?? 0;
 ## Semicolons
 
 ### Use Semicolons
-###### [Better Practice [JS001](#best-practice-js001)]
+###### [Better Practice [JS001](#better-practice-js001)]
 
   - Use semicolons when an assignment occurs.
 
@@ -214,7 +250,7 @@ There is a great article [HERE](https://flaviocopes.com/javascript-automatic-sem
 ## Shorthand Notation
 
 ### Use Specific Shorthand for If-Comparisons
-###### [Better Practice [JS005](#best-practice-js005)]
+###### [Better Practice [JS005](#better-practice-js005)]
 
   - Only omit the brackets for one-line if-comparisons.
 
@@ -239,6 +275,86 @@ Instead, stick to something clear; a one-line if-comparison.
 
 ```javascript
 if (isReady === true) isReady = false;
+```
+
+**[Back to top](#table-of-contents)**
+
+## Ternaries
+
+### Use Single Ternaries ONLY
+###### [Better Practice [JS010](#better-practice-js010)]
+
+  - Nested ternaries are hard to read.
+  - Nested ternaries are difficult to maintain.
+
+  *Why?* Single (non-nested) ternaries are easy to read and maintain.
+
+I often see code like this ...
+
+```javascript
+const a = 'a';
+
+const checkCase = (a === 'a')
+  ? 'A'
+  : (a === 'b')
+  ? 'B'
+  : (a === 'c')
+  ? 'C'
+  : 'D'
+```
+
+This can be simplified with an `if-condition` ...
+
+```javascript
+const a = 'a';
+
+let checkCase = '';
+if (a === 'a') {
+  checkCase = 'A';
+} else if (a === 'b') {
+  checkCase = 'B'
+} else if (a === 'c') {
+  checkCase 'C';
+} else {
+  checkCase = 'D'
+}
+```
+
+This code could be simplified even further with a `switch-case` ...
+
+```javascript
+const a = 'a';
+
+let checkCase = '';
+switch (true) {
+  case (a === 'a'):
+    checkCase = 'A';
+    break;
+  case (a === 'b'):
+    checkCase = 'B';
+    break;
+  case (a === 'c'):
+    checkCase = 'C';
+    break;
+  default:
+    checkCase = 'D';
+    break;
+}
+```
+
+There is another possibility that will sometimes work using a ternary and a JSON object ...
+
+```javascript
+const a = 'a';
+
+const conditions = {
+  a: 'A',
+  b: 'B',
+  c: 'C',
+  default: 'D'
+};
+
+let checkCase = (['a', 'b', 'c'].includes(a)) ? conditions[a] : conditions.default;
 ```
 
 **[Back to top](#table-of-contents)**

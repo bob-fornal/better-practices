@@ -11,7 +11,7 @@ This is not being put in with the other categories, simply because it applies to
 ## Exceptions
 
 ### Single-Character Variable on For-Loops
-###### [Better Practice [NC001](#best-practice-nc001)]
+###### [Better Practice [NC001](#better-practice-nc001)]
 
   - It is fine to use single-character variables on traditional for-loops.
 
@@ -28,14 +28,14 @@ for (let i = 0, len = categories.length; i < len; i++) {
 ## Naming Variables and Functions
 
 ### Use Camel Case for Names
-###### [Better Practice [NC002](#best-practice-nc002)]
+###### [Better Practice [NC002](#better-practice-nc002)]
 
   - Using camel-case is an accepted practice.
 
   *Why?* This is a standard convention.
 
 ### Self Explanatory Names
-###### [Better Practice [NC003](#best-practice-nc003)]
+###### [Better Practice [NC003](#better-practice-nc003)]
 
   - Good variable and function names should be easy to understand and tell what is going on — not more and not less.
   - The names of variables and functions should be self-explanatory and describe the stored value.
@@ -48,7 +48,7 @@ let categoryData = [ ... ];
 ```
 
 ### Booleans Prefixed
-###### [Better Practice [NC004](#best-practice-nc004)]
+###### [Better Practice [NC004](#better-practice-nc004)]
 
   - Boolean variables should be prefixed with `is` or `has`.
 
@@ -60,7 +60,7 @@ let hasCategory = false;
 ```
 
 ### Function Names as Verb/Noun
-###### [Better Practice [NC005](#best-practice-nc005)]
+###### [Better Practice [NC005](#better-practice-nc005)]
 
   - Function naming should be a noun prefixed with a verb.
 
@@ -77,7 +77,7 @@ function getCategory(data) {
 ## Naming Classes
 
 ### Descriptive Titles
-###### [Better Practice [NC006](#best-practice-nc006)]
+###### [Better Practice [NC006](#better-practice-nc006)]
 
   - Use descriptive titles that explain the capabilities of the class.
   - Use pascal case for class names.
