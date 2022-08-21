@@ -358,4 +358,33 @@ const conditions = {
 let checkCase = (['a', 'b', 'c'].includes(a)) ? conditions[a] : conditions.default;
 ```
 
+### DO NOT Overuse Ternaries
+###### [Better Practice [JS013](#better-practice-js013)]
+
+  - Ternaries are not necessary for every comparison.
+
+  *Why?* If the comparison returns a `true` or `false` a ternary is not necessary.
+
+Starting with this comparison ...
+
+```javascript
+if (a === 'a') {
+  return true;
+} else {
+  return false;
+}
+```
+
+We can see the following ternary being used ...
+
+```javascript
+return (a === 'a') ? true : false;
+```
+
+This is now the same as ...
+
+```javascript
+return (a === 'a');
+```
+
 **[Back to top](#table-of-contents)**
