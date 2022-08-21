@@ -10,6 +10,7 @@
 1. [Objects](#objects)
 1. [Semicolons](#semicolons)
 1. [Shorthand Notation](#shorthand-notation)
+1. [Ternaries](#ternaries)
 
 ## Block Declarations
 
