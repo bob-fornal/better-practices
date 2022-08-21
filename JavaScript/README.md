@@ -182,7 +182,7 @@ console.log(category.title.description);
 ```
 
 ### Use Square-Bracket Notation for Dynamic Properties
-###### [Better Practice [JS011](#better-practice-js012)]
+###### [Better Practice [JS012](#better-practice-js012)]
 
   - Use square-bracket notation when working with dynamic properties.
   - This pattern can be used with data that is fetched from an API.
