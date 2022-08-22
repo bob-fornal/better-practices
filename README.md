@@ -1,5 +1,7 @@
 # Better Practices
 
+![Lines of Code Count](https://github.com/bob-fornal/better-practices/blob/images-branch/count-badge.svg)
+
 ## Categories
 
 1. [Angular](/Angular/README.md)
