@@ -2,128 +2,12 @@
 
 ## Table of Contents
 
-1. [Organization and Configuration](#organization-and-configuration)
 1. [API Services](#api-services)
-1. [Filtering Services](#filtering-services)
-1. [Token Services](#token-services)
 1. [Components](#components)
-
-## Organzation and Configuration
-
-### Use a Consistent Structure
-###### [Better Practice [NG001](#better-practice-ng001)]
-
-  - This practice is recommended at the Enterprise Level.
-
-  *Why?* This structure clearly defines what is at each level, providing a clearly understandable organization.
-
-```
-  src
-   |- app
-   |   |- core
-   |   |   |- constants
-   |   |   |- interfaces
-   |   |   |- pipes
-   |   |   |- services
-   |   |   |- structures
-   |   |- features
-   |   |- pages
-   |   |- shared
-```
-
-1. `core` contains several clearly understandable folders.
-1. `features` are one-off, non-page components.
-1. `pages` are page-level components.
-1. `shared` are components or abstractions that are reusable.
-
-### Use a Consistent Pattern for Imports
-###### [Better Practice [NG002](#better-practice-ng002)]
-
-  - This practice is recommended at the Enterprise Level.
-
-  *Why?* This pattern provide a clear improvement in readability.
-
-Organize imports at the top of files. Group them, as follows with a blank line between each group. The groups should be individually sorted alphabetically.
-
-```typescript
-import { Component, OnInit } from '@angular/core';
-import { first, map } from 'rxjs/operators';
-
-import { Category } from '@core/interfaces/category';
-import { Skill } from '@core/interfaces/skill';
-import { SkillLevel } from '@core/interfaces/skill-level';
-
-import { ManageDataService } from '@core/services/manage-data.service';
-import { SkillsService } from '@core/services/skills.service';
-import { Skillset } from '@core/interfaces/skillset';
-```
-
-### Setup Named Imports
-###### [Better Practice [NG003](#better-practice-ng003)]
-
-  - This practice is recommended at the Enterprise Level.
-  - This practice provides much cleaner imports.
-
-  *Why?* Code readability.
-
-In the `tsconfig.json` file add ...
-
-```json
-{
-  "compilerOptions": {
-    ...
-    "paths": {
-      "@core/*": [ "src/app/core/*" ],
-      "@features/*": [ "src/app/features/*" ],
-      "@pages/*": [ "src/app/pages/*" ],
-      "@shared/*": [ "src/app/shared/*" ]
-    }
-    ...
-  }
-}
-```
-
-### Use JSON for Constants
-###### [Better Practice [NG004](#better-practice-ng004)]
-
-  - This practice is recommended at the Enterprise Level.
-  - This practice places constant information in a consistent location.
-
-  *Why?* Code readability.
-
-In the `tsconfig.json` file add ...
-
-```json
-{
-  "compilerOptions": {
-    ...
-    "resolveJsonModule": true,
-    ...
-  }
-}
-```
-
-### Use Synthetic Default Imports
-###### [Better Practice [NG005](#better-practice-ng005)]
-
-  - This practice is recommended at the Enterprise Level.
-  - This practice provides a cleaner import.
-
-  *Why?* Code readability.
-
-In the `tsconfig.json` file add ...
-
-```json
-{
-  "compilerOptions": {
-    ...
-    "allowSyntheticDefaultImports": true,
-    ...
-  }
-}
-```
-
-**[Back to top](#table-of-contents)**
+1. [Filtering Services](#filtering-services)
+1. [Imports](#imports)
+1. [Organization and Configuration](#organization-and-configuration)
+1. [Token Services](#token-services)
 
 ## API Services
 
@@ -324,6 +208,87 @@ export class CategoriesService {
 
 **[Back to top](#table-of-contents)**
 
+## Components
+
+### Use an Abstraction
+###### [Better Practice [NG011](#better-practice-ng011)]
+
+  - Use an abstraction to allow for cleaner base patterns.
+
+  *Why?* This practice provides a strong level of consistency across components, in particular when doing things like getting data from the URL.
+  
+```typescript
+import { ActivatedRoute } from "@angular/router";
+
+export abstract class DetailPageAbstraction {
+  eventId: string = '';
+  eventTaskId: string = '';
+  
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.initialize();
+  }
+  
+  initialize = (): void => {
+    this.eventId = this.activatedRoute.snapshot.paramMap.get('eventId');
+    this.eventTaskId = this.activatedRoute.snapshot.paramMap.get('eventTaskId');
+  };
+}
+```
+
+This abstraction can be implemented like this ...
+
+```typescript
+import { Subject, takeUntil } from 'rxjs';
+
+import { DetailPageAbstraction } from '@shared/detail-page-abstraction/detail-page.abstraction';
+
+@Component({
+  template: ''
+})
+export class CategoriesComponent extends DetailPageAbstraction {
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) {
+    super(activatedRoute);
+  }
+}
+```
+
+### Clean Up Observables
+###### [Better Practice [NG015](#better-practice-ng015)]
+
+  - This practice is recommended at the Enterprise Level.
+
+  *Why?* If a subscription is not closed the function callback attached to it will be continuously called, this can cause memory leaks and performance issues.
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+
+@Component({
+  template: ''
+})
+export class CategoriesComponent {
+  private destroy: any = new Subject();
+
+  constructor(
+    private categoryService: CategoryService
+  ) {
+    this.categoryService.data.pipe(
+      takeUntil(this.destroy)
+    ).subscribe(this.handleCategoryData);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+  }
+}
+```
+
+**[Back to top](#table-of-contents)**
+
 ## Filtering Services
 
 ### Utilize Observables
@@ -368,6 +333,152 @@ export class FilterContent {
   onCountryFilterChange = (country) => {
     this.countryFilter$.next(country);
   };
+}
+```
+
+**[Back to top](#table-of-contents)**
+
+## Imports
+
+### Organize Imports
+###### [Better Practice [NG016](#better-practice-ng016)]
+
+  - Import those from project files first (Angular, Material, RxJS, ...).
+  - Import services next.
+  - Import interfaces next.
+  - Import constants next.
+
+  *Why?* Having the grouping organized this way, alphabetically with a space between each type, creates an organized and readable structure.
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+
+import { LocalstorageService } from '@core/services/localstorage.service';
+import { SocketService } from '@core/services/socket.service';
+
+import { BaseMessage } from '@core/interfaces/base-message';
+import { Team } from '@core/interfaces/team';
+
+import actions from '@core/constants/actions.json';
+import config from '@core/constants/config.json';
+```
+
+**[Back to top](#table-of-contents)**
+
+## Organzation and Configuration
+
+### Use a Consistent Structure
+###### [Better Practice [NG001](#better-practice-ng001)]
+
+  - This practice is recommended at the Enterprise Level.
+
+  *Why?* This structure clearly defines what is at each level, providing a clearly understandable organization.
+
+```
+  src
+   |- app
+   |   |- core
+   |   |   |- constants
+   |   |   |- interfaces
+   |   |   |- pipes
+   |   |   |- services
+   |   |   |- structures
+   |   |- features
+   |   |- pages
+   |   |- shared
+```
+
+1. `core` contains several clearly understandable folders.
+1. `features` are one-off, non-page components.
+1. `pages` are page-level components.
+1. `shared` are components or abstractions that are reusable.
+
+### Use a Consistent Pattern for Imports
+###### [Better Practice [NG002](#better-practice-ng002)]
+
+  - This practice is recommended at the Enterprise Level.
+
+  *Why?* This pattern provide a clear improvement in readability.
+
+Organize imports at the top of files. Group them, as follows with a blank line between each group. The groups should be individually sorted alphabetically.
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { first, map } from 'rxjs/operators';
+
+import { Category } from '@core/interfaces/category';
+import { Skill } from '@core/interfaces/skill';
+import { SkillLevel } from '@core/interfaces/skill-level';
+
+import { ManageDataService } from '@core/services/manage-data.service';
+import { SkillsService } from '@core/services/skills.service';
+import { Skillset } from '@core/interfaces/skillset';
+```
+
+### Setup Named Imports
+###### [Better Practice [NG003](#better-practice-ng003)]
+
+  - This practice is recommended at the Enterprise Level.
+  - This practice provides much cleaner imports.
+
+  *Why?* Code readability.
+
+In the `tsconfig.json` file add ...
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "paths": {
+      "@core/*": [ "src/app/core/*" ],
+      "@features/*": [ "src/app/features/*" ],
+      "@pages/*": [ "src/app/pages/*" ],
+      "@shared/*": [ "src/app/shared/*" ]
+    }
+    ...
+  }
+}
+```
+
+### Use JSON for Constants
+###### [Better Practice [NG004](#better-practice-ng004)]
+
+  - This practice is recommended at the Enterprise Level.
+  - This practice places constant information in a consistent location.
+
+  *Why?* Code readability.
+
+In the `tsconfig.json` file add ...
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "resolveJsonModule": true,
+    ...
+  }
+}
+```
+
+### Use Synthetic Default Imports
+###### [Better Practice [NG005](#better-practice-ng005)]
+
+  - This practice is recommended at the Enterprise Level.
+  - This practice provides a cleaner import.
+
+  *Why?* Code readability.
+
+In the `tsconfig.json` file add ...
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "allowSyntheticDefaultImports": true,
+    ...
+  }
 }
 ```
 
@@ -503,83 +614,3 @@ export class AuthInterceptorService implements HttpInterceptor {
 
 **[Back to top](#table-of-contents)**
 
-## Components
-
-### Use an Abstraction
-###### [Better Practice [NG011](#better-practice-ng011)]
-
-  - Use an abstraction to allow for cleaner base patterns.
-
-  *Why?* This practice provides a strong level of consistency across components, in particular when doing things like getting data from the URL.
-  
-```typescript
-import { ActivatedRoute } from "@angular/router";
-
-export abstract class DetailPageAbstraction {
-  eventId: string = '';
-  eventTaskId: string = '';
-  
-  constructor(
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.initialize();
-  }
-  
-  initialize = (): void => {
-    this.eventId = this.activatedRoute.snapshot.paramMap.get('eventId');
-    this.eventTaskId = this.activatedRoute.snapshot.paramMap.get('eventTaskId');
-  };
-}
-```
-
-This abstraction can be implemented like this ...
-
-```typescript
-import { Subject, takeUntil } from 'rxjs';
-
-import { DetailPageAbstraction } from '@shared/detail-page-abstraction/detail-page.abstraction';
-
-@Component({
-  template: ''
-})
-export class CategoriesComponent extends DetailPageAbstraction {
-  constructor(
-    private activatedRoute: ActivatedRoute
-  ) {
-    super(activatedRoute);
-  }
-}
-```
-
-### Clean Up Observables
-###### [Better Practice [NG015](#better-practice-ng015)]
-
-  - This practice is recommended at the Enterprise Level.
-
-  *Why?* If a subscription is not closed the function callback attached to it will be continuously called, this can cause memory leaks and performance issues.
-
-```typescript
-import { Component, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
-
-@Component({
-  template: ''
-})
-export class CategoriesComponent {
-  private destroy: any = new Subject();
-
-  constructor(
-    private categoryService: CategoryService
-  ) {
-    this.categoryService.data.pipe(
-      takeUntil(this.destroy)
-    ).subscribe(this.handleCategoryData);
-  }
-
-  ngOnDestroy(): void {
-    this.destroy.next();
-  }
-}
-```
-
-**[Back to top](#table-of-contents)**
