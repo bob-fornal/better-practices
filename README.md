@@ -8,6 +8,7 @@
 1. [GitHub Pages](/GitHub-Pages/README.md)
 1. [JavaScript](/JavaScript/README.md)
 1. [Naming Conventions](/Naming-Conventions/README.md)
+1. [React](/React/README.md)
 
 ## Influence
 
