@@ -25,12 +25,4 @@ If you are looking for an opinionated better practices guide for syntax, convent
 
 The purpose of this guide is to provide guidance on building applications by showing the conventions I use and, more importantly, why I choose them.
 
-## Process
-
-```
-1. Discuss the changes in a GitHub issue.
-2. Open a Pull Request, reference the issue, and explain the change and why it adds value.
-3. The Pull Request will be evaluated and either merged or declined.
-```
-
 Use this guide. Attributions are appreciated.
