@@ -65,6 +65,7 @@ jobs:
   - Set `RouterModule.forRoot(routes, { useHash: true })` in app-routing.module.ts
 
   *Why?* These allow the application to correctly set the path using hashing based on the GitHub pages pattern.
+  
   *Why?* This pattern doesn't need a local build and deploy process.
 
 **[Back to top](#table-of-contents)**
@@ -79,6 +80,7 @@ jobs:
   - Set paths correctly in public/index.html for the project favicon and images.
 
   *Why?* These allow the application to correctly set the path using hashing based on the GitHub pages pattern.
+  
   *Why?* This pattern doesn't need a local build and deploy process.
 
 **[Back to top](#table-of-contents)**
