@@ -7,6 +7,7 @@
 1. [Comparison](#comparison)
 1. [For-Loops](#for-loops)
 1. [Functions](#functions)
+1. [JSON Methods](#json-methods)
 1. [Objects](#objects)
 1. [Semicolons](#semicolons)
 1. [Shorthand Notation](#shorthand-notation)
@@ -161,6 +162,45 @@ const third = () => {
 ```
 
 **[Back to top](#table-of-contents)**
+
+## JSON Methods
+
+### Wrap `JSON.parse` in a try/catch
+###### [Better Practice [JS015](#better-practice-js015)]
+
+  - Use try/catch with `JSON.parse`
+
+  *Why?* This is a common point of failure that can be managed.
+
+```javascript
+const handleInputData = (data) => {
+  try {
+    const result = JSON.parse(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
+### Wrap `JSON.stringify` in a try/catch
+###### [Better Practice [JS014](#better-practice-js014)]
+
+  - Use try/catch with `JSON.stringify`
+
+  *Why?* This is a common point of failure that can be managed.
+
+```javascript
+const handleInputStructure = (input) => {
+  try {
+    const result = JSON.stringify(input);
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
+**[Back to top](#table-of-contents)**
+
 
 ## Objects
 
