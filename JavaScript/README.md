@@ -136,14 +136,14 @@ for (let i = 0, len = categories.length; i < len; i++) {
 
 ## Functions
 
-### Arrow Function Expression rather than Declaration
+### Function Declaration rather than function and arrow expressions.
 ###### [Better Practice [JS008](#better-practice-js008)]
 
-  - Use function expressions rather than function declaration.
+  - Use function declaration rather than function expressions.
 
-  *Why?* Take advantage of the scope improvements that function expressions provide.
+  *Why?* Take advantage of the scope improvements that function declaration provide.
 
-  *Why?* Avoid the hoisting behavior of function declaration.
+  *Why?* Take advantage of the hoisting behavior of function declaration.
 
 * In the following code, the function `first` works even though the actual function follows this line in the code.
 * The function `second` logically throws a `ReferenceError`.
