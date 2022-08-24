@@ -53,8 +53,11 @@ console.log(y); // consoles 10
   - A single, canonical way to emulate classes in JavaScript.
 
   *Why?* Convenient, self-contained syntax.
+
   *Why?* Classes are clearer and are more readable.
+
   *Why?* Classes have a built in constructor.
+
   *Why?* More familiar when more familiar with class-based languages.
 
 **[Back to top](#table-of-contents)**
@@ -75,6 +78,7 @@ console.log(y); // consoles 10
   - Makes the logic more explicit and easier to reason about.
 
   *Why?* Make the code less prone to side effects.
+
   *Why?* Make the code more readable.
   
 Side-effects can occur if this function is passed a string which evaluates `!!isReady` to `true`.
@@ -107,7 +111,8 @@ function handleData(isReady) {
   - Calculate the length outside the iteration of the loop.
 
   *Why?* Increased efficiency with large datasets.
-  *Why?* Increated readability.
+
+  *Why?* Increased readability.
  
 Instead of ...
  
@@ -137,6 +142,7 @@ for (let i = 0, len = categories.length; i < len; i++) {
   - Use function expressions rather than function declaration.
 
   *Why?* Take advantage of the scope improvements that function expressions provide.
+
   *Why?* Avoid the hoisting behavior of function declaration.
 
 * In the following code, the function `first` works even though the actual function follows this line in the code.

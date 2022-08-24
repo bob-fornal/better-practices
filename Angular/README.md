@@ -17,7 +17,9 @@
   - This practice is recommended at the Enterprise Level.
 
   *Why?* This allows multiple developers to be working within a repository without regular merge conflicts.
+
   *Why?* This simplifies locating code.
+  
   *Why?* This reduces clutter in the `services` folder.
   
 ```
@@ -493,6 +495,7 @@ In the `tsconfig.json` file add ...
   - Recursion check that the token has been retrieved for components and services making API call.s
 
   *Why?* Isolate this functionality rather than embedding it into other services.
+
   *Why?* The recursive function applies minimal wait time for the components needing to make calls.
 
 ```typescript
