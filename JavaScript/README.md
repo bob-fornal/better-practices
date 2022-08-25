@@ -136,18 +136,60 @@ for (let i = 0, len = categories.length; i < len; i++) {
 
 ## Functions
 
-### Arrow Function Expression rather than Declaration
+### Declaration Functions within Classes
 ###### [Better Practice [JS008](#better-practice-js008)]
 
-  - Use function expressions rather than function declaration.
+  - Use function declaration within classes as methods.
 
-  *Why?* Take advantage of the scope improvements that function expressions provide.
+  *Why?* This pattern is widely used and accepted.
 
-  *Why?* Avoid the hoisting behavior of function declaration.
+  *Why?* This pattern does not have scope issues.
+
+```javascript
+class Categories {
+  constructor() {}
+
+  getData() {
+    // do something
+  }
+}
+```
+
+### Arrow Functions within Classes
+###### [Better Practice [JS017](#better-practice-js017)]
+
+  - Use arrow functions within classes when the method will be used as a callback.
+
+  *Why?* This pattern takes into account `this` without the need for `.bind(this)`.
+
+In the following code, since the `setTimeout` is used, an arrow function would be a better fit.
+
+```javascript
+class Categories {
+  constructor() {
+    setTimeout(this.init, 1000);
+  }
+
+  init = () => {
+    // do something
+  };
+}
+```
+
+### Arrow Functions rather than Declaration or Expression
+###### [Better Practice [JS018](#better-practice-js018)]
+
+  - Arrow functions should be used outside of Classes.
+
+  *Why?* Avoid *hoisting* issues (this is tied to why arrow funtions, `const`, and `let` were added).
+
+  *Why?* Better handling of scope when the function is used.
+
+  *Why?* Cleaner presentation of implicit return.
 
 * In the following code, the function `first` works even though the actual function follows this line in the code.
 * The function `second` logically throws a `ReferenceError`.
-* The function `third` also logicall throws a `ReferenceError` and takes advantage of scope improvements.
+* The function `third` also logically throws a `ReferenceError` and takes advantage of scope improvements.
 
 ```javascript
 first(); // works
