@@ -14,7 +14,7 @@
 ### Keep Services at the Component Level
 ###### [Better Practice [NG006](#better-practice-ng006)]
 
-  - This practice is recommended at the Enterprise Level.
+  * This practice is recommended at the Enterprise Level.
 
   *Why?* This allows multiple developers to be working within a repository without regular merge conflicts.
 
@@ -38,8 +38,8 @@ src
 ### Use an Abstraction
 ###### [Better Practice [NG007](#better-practice-ng007)]
 
-  - Use an abstraction to allow for cleaner base patterns.
-  - Additionally, this provides a clean method for using offline data easily.
+  * Use an abstraction to allow for cleaner base patterns.
+  * Additionally, this provides a clean method for using offline data easily.
 
   *Why?* This practice provides a strong level of consistency across API Services.
   
@@ -107,8 +107,8 @@ export class CategoriesService extends ApiAbstractionService {
 ### Separate Call from Data Management
 ###### [Better Practice [NG008](#better-practice-ng008)]
 
-  - This separation of concerns allows for a much cleaner implementation.
-  - Testing is simplified.
+  * This separation of concerns allows for a much cleaner implementation.
+  * Testing is simplified.
 
   *Why?* This separates when we request the data from when that data is utilized efficiently.
   
@@ -158,7 +158,7 @@ export class AddSkillsComponent implements OnInit {
 ### Use Try/Catch within API Call Request Functions
 ###### [Better Practice [NG009](#better-practice-ng009)]
 
-  - This provides proper error handling.
+  * This provides proper error handling.
 
   *Why?* This places error handling at the proper level.
 
@@ -179,7 +179,7 @@ getCategories = async (): Promise<void> => {
 ### Maniplate Incoming Data within API Services
 ###### [Better Practice [NG010](#better-practice-ng010)]
 
-  - Data Manipulation should be in the service where the data is requested.
+  * Data Manipulation should be in the service where the data is requested.
 
   *Why?* All relevant data management is in one place.
 
@@ -215,7 +215,7 @@ export class CategoriesService {
 ### Use an Abstraction
 ###### [Better Practice [NG011](#better-practice-ng011)]
 
-  - Use an abstraction to allow for cleaner base patterns.
+  * Use an abstraction to allow for cleaner base patterns.
 
   *Why?* This practice provides a strong level of consistency across components, in particular when doing things like getting data from the URL.
   
@@ -261,7 +261,7 @@ export class CategoriesComponent extends DetailPageAbstraction {
 ### Clean Up Observables
 ###### [Better Practice [NG015](#better-practice-ng015)]
 
-  - This practice is recommended at the Enterprise Level.
+  * This practice is recommended at the Enterprise Level.
 
   *Why?* If a subscription is not closed the function callback attached to it will be continuously called, this can cause memory leaks and performance issues.
 
@@ -296,7 +296,7 @@ export class CategoriesComponent {
 ### Utilize Observables
 ###### [Better Practice [NG014](#better-practice-ng014)]
 
-  - With Observables, the filters and data can be watched for changes that can then be passed to a single function for processing.
+  * With Observables, the filters and data can be watched for changes that can then be passed to a single function for processing.
 
   *Why?* This removes the complexity of watching data for changes.
 
@@ -345,10 +345,10 @@ export class FilterContent {
 ### Organize Imports
 ###### [Better Practice [NG016](#better-practice-ng016)]
 
-  - Import those from project files first (Angular, Material, RxJS, ...).
-  - Import services next.
-  - Import interfaces next.
-  - Import constants next.
+  * Import those from project files first (Angular, Material, RxJS, ...).
+  * Import services next.
+  * Import interfaces next.
+  * Import constants next.
 
   *Why?* Having the grouping organized this way, alphabetically with a space between each type, creates an organized and readable structure.
 
@@ -374,7 +374,7 @@ import config from '@core/constants/config.json';
 ### Use a Consistent Structure
 ###### [Better Practice [NG001](#better-practice-ng001)]
 
-  - This practice is recommended at the Enterprise Level.
+  * This practice is recommended at the Enterprise Level.
 
   *Why?* This structure clearly defines what is at each level, providing a clearly understandable organization.
 
@@ -400,7 +400,7 @@ import config from '@core/constants/config.json';
 ### Use a Consistent Pattern for Imports
 ###### [Better Practice [NG002](#better-practice-ng002)]
 
-  - This practice is recommended at the Enterprise Level.
+  * This practice is recommended at the Enterprise Level.
 
   *Why?* This pattern provide a clear improvement in readability.
 
@@ -422,8 +422,8 @@ import { Skillset } from '@core/interfaces/skillset';
 ### Setup Named Imports
 ###### [Better Practice [NG003](#better-practice-ng003)]
 
-  - This practice is recommended at the Enterprise Level.
-  - This practice provides much cleaner imports.
+  * This practice is recommended at the Enterprise Level.
+  * This practice provides much cleaner imports.
 
   *Why?* Code readability.
 
@@ -447,8 +447,8 @@ In the `tsconfig.json` file add ...
 ### Use JSON for Constants
 ###### [Better Practice [NG004](#better-practice-ng004)]
 
-  - This practice is recommended at the Enterprise Level.
-  - This practice places constant information in a consistent location.
+  * This practice is recommended at the Enterprise Level.
+  * This practice places constant information in a consistent location.
 
   *Why?* Code readability.
 
@@ -467,8 +467,8 @@ In the `tsconfig.json` file add ...
 ### Use Synthetic Default Imports
 ###### [Better Practice [NG005](#better-practice-ng005)]
 
-  - This practice is recommended at the Enterprise Level.
-  - This practice provides a cleaner import.
+  * This practice is recommended at the Enterprise Level.
+  * This practice provides a cleaner import.
 
   *Why?* Code readability.
 
@@ -491,8 +491,8 @@ In the `tsconfig.json` file add ...
 ### Have a JWT Token Service
 ###### [Better Practice [NG012](#better-practice-ng012)]
 
-  - This is a service that can retrieve the token.
-  - Recursion check that the token has been retrieved for components and services making API call.s
+  * This is a service that can retrieve the token.
+  * Recursion check that the token has been retrieved for components and services making API call.s
 
   *Why?* Isolate this functionality rather than embedding it into other services.
 
@@ -568,7 +568,7 @@ export class JwtTokenService {
 ### Use an Interceptor
 ###### [Better Practice [NG013](#better-practice-ng013)]
 
-  - Use an interceptor to keep the API calls in other services clean.
+  * Use an interceptor to keep the API calls in other services clean.
 
   *Why?* This practice provides a clarity in the code.
   

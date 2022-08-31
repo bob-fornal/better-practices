@@ -18,7 +18,7 @@
 ### Use `let` and `const`
 ###### [Better Practice [JS006](#better-practice-js006)]
 
-  - Use `let` and `const` rather than `var`
+  * Use `let` and `const` rather than `var`
 
   *Why?* There are some side-effects to using `var` declaration.
 
@@ -49,8 +49,8 @@ console.log(y); // consoles 10
 ### Use Classes instead of Constructor Functions
 ###### [Better Practice [JS009](#better-practice-js009)]
 
-  - `new` is required.
-  - A single, canonical way to emulate classes in JavaScript.
+  * `new` is required.
+  * A single, canonical way to emulate classes in JavaScript.
 
   *Why?* Convenient, self-contained syntax.
 
@@ -67,15 +67,15 @@ console.log(y); // consoles 10
 ### Use `===` instead of `==`
 ###### [Better Practice [JS004](#better-practice-js004)]
 
-  - Using `===` and `!==` allows for strict equality when comparing values.
+  * Using `===` and `!==` allows for strict equality when comparing values.
 
   *Why?* When working with `==` and `!=` there can be side-effects related to type coersion (unexpected results).
 
 ### Be Explicit when Comparing
 ###### [Better Practice [JS003](#better-practice-js003)]
 
-  - Using `!` or `!!` can have unusual side-effects.
-  - Makes the logic more explicit and easier to reason about.
+  * Using `!` or `!!` can have unusual side-effects.
+  * Makes the logic more explicit and easier to reason about.
 
   *Why?* Make the code less prone to side effects.
 
@@ -108,7 +108,7 @@ function handleData(isReady) {
 ### Pre-Calculate Length
 ###### [Better Practice [JS002](#better-practice-js002)]
 
-  - Calculate the length outside the iteration of the loop.
+  * Calculate the length outside the iteration of the loop.
 
   *Why?* Increased efficiency with large datasets.
 
@@ -139,7 +139,7 @@ for (let i = 0, len = categories.length; i < len; i++) {
 ### Declaration Functions within Classes
 ###### [Better Practice [JS008](#better-practice-js008)]
 
-  - Use function declaration within classes as methods.
+  * Use function declaration within classes as methods.
 
   *Why?* This pattern is widely used and accepted.
 
@@ -158,7 +158,7 @@ class Categories {
 ### Arrow Functions within Classes
 ###### [Better Practice [JS017](#better-practice-js017)]
 
-  - Use arrow functions within classes when the method will be used as a callback.
+  * Use arrow functions within classes when the method will be used as a callback.
 
   *Why?* This pattern takes into account `this` without the need for `.bind(this)`.
 
@@ -179,7 +179,7 @@ class Categories {
 ### Arrow Functions rather than Declaration or Expression
 ###### [Better Practice [JS018](#better-practice-js018)]
 
-  - Arrow functions should be used outside of Classes.
+  * Arrow functions should be used outside of Classes.
 
   *Why?* Avoid *hoisting* issues (this is tied to why arrow funtions, `const`, and `let` were added).
 
@@ -216,7 +216,7 @@ const third = () => {
 ### Wrap `JSON.parse` in a try/catch
 ###### [Better Practice [JS015](#better-practice-js015)]
 
-  - Use try/catch with `JSON.parse`
+  * Use try/catch with `JSON.parse`
 
   *Why?* This is a common point of failure that can be managed.
 
@@ -233,7 +233,7 @@ const handleInputData = (data) => {
 ### Wrap `JSON.stringify` in a try/catch
 ###### [Better Practice [JS014](#better-practice-js014)]
 
-  - Use try/catch with `JSON.stringify`
+  * Use try/catch with `JSON.stringify`
 
   *Why?* This is a common point of failure that can be managed.
 
@@ -255,7 +255,7 @@ const handleInputStructure = (input) => {
 ### Use Dot Notation for Fixed Properties
 ###### [Better Practice [JS011](#better-practice-js011)]
 
-  - Use dot notation when working with fixed properties.
+  * Use dot notation when working with fixed properties.
 
   *Why?* This is a simple, readable pattern.
 
@@ -272,8 +272,8 @@ console.log(category.title.description);
 ### Use Square-Bracket Notation for Dynamic Properties
 ###### [Better Practice [JS012](#better-practice-js012)]
 
-  - Use square-bracket notation when working with dynamic properties.
-  - This pattern can be used with data that is fetched from an API.
+  * Use square-bracket notation when working with dynamic properties.
+  * This pattern can be used with data that is fetched from an API.
 
   *Why?* This is a simple, readable pattern.
 
@@ -291,7 +291,7 @@ const getData = async (url) => {
 ### Use Optional Chaining with Null-ish Coalescing to Check Nested Objects
 ###### [Better Practice [JS007](#better-practice-js007)]
 
-  - Use a pattern like `category?.title?.description`
+  * Use a pattern like `category?.title?.description`
 
   *Why?* This is a simpler, more readable pattern.
 
@@ -328,7 +328,7 @@ const weight = category?.title?.weight ?? 0;
 ### Use Semicolons
 ###### [Better Practice [JS001](#better-practice-js001)]
 
-  - Use semicolons when an assignment occurs.
+  * Use semicolons when an assignment occurs.
 
   *Why?* There are strict Automatic Semicolon Insertion (ASI) rules that behave as expected MOST of the time. Adding them in is not complicated and provide a security that unexpected side-effects will not occur.
   
@@ -341,7 +341,7 @@ There is a great article [HERE](https://flaviocopes.com/javascript-automatic-sem
 ### Use Specific Shorthand for If-Comparisons
 ###### [Better Practice [JS005](#better-practice-js005)]
 
-  - Only omit the brackets for one-line if-comparisons.
+  * Only omit the brackets for one-line if-comparisons.
 
   *Why?* Less confusion in the code, making it more readable.
 
@@ -373,8 +373,8 @@ if (isReady === true) isReady = false;
 ### Use Single Ternaries ONLY
 ###### [Better Practice [JS010](#better-practice-js010)]
 
-  - Nested ternaries are hard to read.
-  - Nested ternaries are difficult to maintain.
+  * Nested ternaries are hard to read.
+  * Nested ternaries are difficult to maintain.
 
   *Why?* Single (non-nested) ternaries are easy to read and maintain.
 
@@ -449,7 +449,7 @@ let checkCase = (['a', 'b', 'c'].includes(a)) ? conditions[a] : conditions.defau
 ### DO NOT Make Ternaries More Complex
 ###### [Better Practice [JS013](#better-practice-js013)]
 
-  - Ternaries are not necessary for every comparison.
+  * Ternaries are not necessary for every comparison.
 
   *Why?* If the comparison returns a `true` or `false` a ternary is not necessary.
 

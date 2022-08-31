@@ -10,7 +10,7 @@
 ### Use Unique Identifiers as Keys
 ###### [Better Practice [RT002](#better-practice-rt002)]
 
-  - Do not use index to identify items in an array.
+  * Do not use index to identify items in an array.
 
   *Why?* With keys, React can pinpoint which item has been changed, added, or removed from the array.
 
@@ -53,7 +53,7 @@ const Items = () => {
 ### Use Functional Components and Hooks
 ###### [Better Practice [RT001](#better-practice-rt001)]
 
-  - Use functional components and hooks.
+  * Use functional components and hooks.
 
   *Why?* They result in more concise and readable code.
 
