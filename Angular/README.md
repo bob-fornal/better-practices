@@ -52,18 +52,13 @@ export abstract class ApiAbstractionService {
   getHostname = (_window: any): string => _window.location.hostname;
 
   getApiAddress = (key: string): string => {
-    const hostname: string = this.getHostname(window);
-    const base = hostnames.BASE[hostname];
-    
-    let address: string = '';
     if (hostnames.online.hasOwnProperty(key) === true) {
-      address = base + hostnames.online[key];
+      let hostname: string = this.getHostName(window);
+      return hostnames.HOSTNAMES[hostname] + hostnames.online[key];
     } else {
-      address = base + hostnames.offline[key];
+      return hostnames.offline.BASE + hostnames.offline[key];
     }
-    return address;
   };
-}
 ```
 
 `hostnames.json` looks something like this ...
@@ -71,11 +66,13 @@ export abstract class ApiAbstractionService {
 ```json
 {
   "offline": {
-    "categories": "categories.json",
+    "BASE": "/assets/mock-data/api",
+    
+    "get-categories": "categories.json",
     "TEST-OFFLINE": "TEST-OFFLINE"
   },
-  "BASE": {
-    "localhost": "/assets/api/mock/",
+  "HOSTNAMES": {
+    "localhost": "https://api.COMPANY.com/APPLICATION",
     "TEST-BASE": "/TEST-BASE/"
   },
   "online": {
