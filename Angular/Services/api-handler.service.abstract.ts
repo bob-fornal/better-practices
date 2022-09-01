@@ -3,15 +3,17 @@ import hostnames from '@core/constants/hostnames.json';
 
 export abstract class ApiHandlerService {
 
+  hostnames: any = hostnames;
+  
   getHostName = (_window: any): string => _window?.location?.hostname;
 
   getURL = (key: string): string => {
-    if (hostnames.ROUTES.hasOwnProperty(key) === true) {
+    if (this.hostnames.online.hasOwnProperty(key) === true) {
       let hostname: string = this.getHostName(window);
-      return hostnames.HOSTNAMES[hostname] + hostnames.ROUTES[key];
+      return this.hostnames.HOSTNAMES[hostname] + this.hostnames.online[key];
     }
     else {
-      return hostnames.localJSON.BASE + hostnames.localJSON[key];
+      return this.hostnames.offline.BASE + this.hostnames.offline[key];
     }
   };
 
