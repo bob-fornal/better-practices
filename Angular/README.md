@@ -52,11 +52,11 @@ export abstract class ApiAbstractionService {
   getHostname = (_window: any): string => _window.location.hostname;
 
   getApiAddress = (key: string): string => {
-    if (hostnames.online.hasOwnProperty(key) === true) {
+    if (this.hostnames.online.hasOwnProperty(key) === true) {
       let hostname: string = this.getHostName(window);
-      return hostnames.HOSTNAMES[hostname] + hostnames.online[key];
+      return this.hostnames.HOSTNAMES[hostname] + this.hostnames.online[key];
     } else {
-      return hostnames.offline.BASE + hostnames.offline[key];
+      return this.hostnames.offline.BASE + this.hostnames.offline[key];
     }
   };
 ```
